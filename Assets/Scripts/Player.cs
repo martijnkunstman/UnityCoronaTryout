@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     private float xint;
 
+    /*
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
         float xfloat = xint / 100;
         gameObject.transform.position = new Vector3(xfloat, xfloat, 0);
     }
+    */
 
 
 }
