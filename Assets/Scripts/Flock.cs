@@ -37,7 +37,7 @@ public class Flock : MonoBehaviour
         {
             FlockAgent newAgent = Instantiate(
                 agentPrefab,
-                Random.insideUnitCircle * startingCount * AgentDensity,
+                Random.insideUnitSphere * startingCount * AgentDensity,
                 Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f)),
                 transform
                 );
@@ -59,7 +59,7 @@ public class Flock : MonoBehaviour
 
 
             Vector3 move = behavior.CalculateMove(agent, context, this);
-            //Vector3 move = new Vector3(1, 1, 1);
+
             move *= driveFactor;
             if (move.sqrMagnitude > squareMaxSpeed)
             {
@@ -68,7 +68,7 @@ public class Flock : MonoBehaviour
             agent.Move(move);
             
             
-
+            //move to center
 
 
 
@@ -79,8 +79,6 @@ public class Flock : MonoBehaviour
     {
         List<Transform> context = new List<Transform>();
         Collider[] contextColliders = Physics.OverlapSphere(agent.transform.position, neighborRadius);
-
-        Debug.Log("contextColliders: " + contextColliders.Length);
 
         foreach (Collider c in contextColliders)
         {
