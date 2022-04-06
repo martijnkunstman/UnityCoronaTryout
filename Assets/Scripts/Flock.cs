@@ -9,8 +9,8 @@ public class Flock : MonoBehaviour
     public FlockBehavior behavior;
 
     [Range(10, 500)]
-    public int startingCount = 250;
-    const float AgentDensity = 0.08f;
+    public int startingCount = 300;
+    const float AgentDensity = 0.02f;
 
     [Range(1f, 100f)]
     public float driveFactor = 10f;
