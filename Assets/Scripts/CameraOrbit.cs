@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraOrbit : MonoBehaviour
 {
 
-    private float speedMod = 1.0f;//a speed modifier
+    private float speedMod = 0.0f;//a speed modifier
     private Vector3 point = new Vector3(0,0,0);//the coord to the point where the camera looks at
 
     // Start is called before the first frame update
@@ -17,6 +17,6 @@ public class CameraOrbit : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.RotateAround(point, new Vector3(0.0f, 1.0f, 0.0f), 20 * Time.deltaTime * speedMod);
+        transform.RotateAround(point, new Vector3(0.0f, 0.0f, 0.0f), 20 * Time.deltaTime * speedMod);
     }
 }

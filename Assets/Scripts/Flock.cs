@@ -9,17 +9,23 @@ public class Flock : MonoBehaviour
     public FlockBehavior behavior;
 
     [Range(10, 500)]
-    public int startingCount = 300;
-    const float AgentDensity = 0.02f;
+    public int startingCount = 250;
+    const float AgentDensity = 0.015f;
 
     [Range(1f, 100f)]
     public float driveFactor = 10f;
     [Range(1f, 100f)]
-    public float maxSpeed = 5f;
+    public float maxSpeed = 2f;
     [Range(1f, 10f)]
     public float neighborRadius = 1.5f;
     [Range(0f, 1f)]
     public float avoidanceRadiusMultiplier = 0.5f;
+    [Range(0f, 2f)]
+    public float maxSpeedMin = 0f;
+    [Range(2f, 50f)]
+    public float maxSpeedMax = 25f;
+
+    public float change = 0.05f;
 
     float squareMaxSpeed;
     float squareNeighborRadius;
@@ -29,6 +35,10 @@ public class Flock : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        maxSpeedMax = 20f;
+        maxSpeedMin = 0.1f;
+        change = 0.05f;
+
         squareMaxSpeed = maxSpeed * maxSpeed;
         squareNeighborRadius = neighborRadius * neighborRadius;
         squareAvoidanceRadius = squareNeighborRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
@@ -50,6 +60,18 @@ public class Flock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        maxSpeed = maxSpeed + change;
+        if (maxSpeed> maxSpeedMax)
+        {
+            change = -change;
+        }
+        if (maxSpeed < maxSpeedMin)
+        {
+            change = -change;
+        }
+
+
         foreach (FlockAgent agent in agents)
         {
             List<Transform> context = GetNearbyObjects(agent);
@@ -69,9 +91,6 @@ public class Flock : MonoBehaviour
             
             
             //move to center
-
-
-
         }
     }
 
